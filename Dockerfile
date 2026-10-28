@@ -7,7 +7,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# DevCloud只路由8080端口，必须绑定0.0.0.0:8080
-EXPOSE 8080
+# Hugging Face Spaces要求：非root用户(UID 1000)运行
+RUN useradd -m -u 1000 user && chown -R user:user /app
+USER user
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "app:app"]
+# HF Spaces固定使用7860端口
+EXPOSE 7860
+
+CMD ["gunicorn", "--bind", "0.0.0.0:7860", "--workers", "2", "app:app"]

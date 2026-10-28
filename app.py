@@ -2,9 +2,9 @@
 """旅游攻略Agent - Flask Web应用
 
 运行方式：python app.py
-访问地址：http://127.0.0.1:8080
+访问地址：http://127.0.0.1:7860
 
-部署说明：DevCloud/K8s环境只暴露8080端口，应用必须绑定0.0.0.0:8080。
+部署说明：Hugging Face Spaces要求应用监听7860端口并绑定0.0.0.0。
 """
 
 import os
@@ -50,6 +50,6 @@ def greet():
 
 
 if __name__ == "__main__":
-    # DevCloud硬性规则：必须监听8080端口并绑定0.0.0.0
-    port = int(os.environ.get("PORT", 8080))
+    # Hugging Face Spaces要求监听7860端口并绑定0.0.0.0
+    port = int(os.environ.get("PORT", 7860))
     app.run(host="0.0.0.0", port=port, debug=False)
