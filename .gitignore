@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+.git/
+*.md
+_setup_git.bat
+.vscode/
+.idea/
